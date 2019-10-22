@@ -55,6 +55,9 @@ define( 'SECURE_AUTH_SALT', 'd10955604168ae403e22286d39d1dd5b1439d453');
 define( 'LOGGED_IN_SALT',   '09f2a454f2ebb784e0a148b4aa7e1911344a29fa');
 define( 'NONCE_SALT',       'dd9aef6a2c1a4384165edd78c8a83302aaa3d9fd');
 
+define('JWT_AUTH_SECRET_KEY', 'wordpressSecretKey');
+define('JWT_AUTH_CORS_ENABLE', true);
+
 /**#@-*/
 
 /**
