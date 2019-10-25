@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const BookItem = props => {
   const [imageURL, getImage] = useState('');
-  const [auther, getAuthor] = useState('');
+  const [author, getAuthorName] = useState('');
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -15,6 +15,8 @@ const BookItem = props => {
 
     Promise.all([getImageURL, getAuthor]).then(res => {
       getImage(res[0].data.media_details.sizes.full.source_url);
+      getAuthorName(res[1].data.name);
+      setIsLoaded(true);
     });
   });
   return (
