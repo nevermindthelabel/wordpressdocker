@@ -19,16 +19,23 @@ const BookItem = props => {
       setIsLoaded(true);
     });
   });
-  return (
-    <div>
-      <h2>{props.book.title.rendered}</h2>
-      <small>
-        review by <strong></strong>
-      </small>
-      <img src={imageURL} alt={props.book.title.rendered} />
-      <div dangerouslySetInnerHTML={{ __html: props.book.excerpt.rendered }} />
-    </div>
-  );
+
+  if (isLoaded) {
+    return (
+      <div>
+        <h2>{props.book.title.rendered}</h2>
+        <small>
+          review by <strong></strong>
+        </small>
+        <img src={imageURL} alt={props.book.title.rendered} />
+        <div
+          dangerouslySetInnerHTML={{ __html: props.book.excerpt.rendered }}
+        />
+      </div>
+    );
+  } else {
+    return <h1>waiting...</h1>;
+  }
 };
 
 export default BookItem;
