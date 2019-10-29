@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const BookPage = props => {
   const [book, setBook] = useState({});
@@ -16,12 +17,14 @@ const BookPage = props => {
   }, []);
 
   if (loaded) {
-    console.log(book)
+    console.log(book);
     return (
       <Fragment>
         <h1>{book.title.rendered}</h1>
         <h3>{book.author}</h3>
-
+        <Link to='/'>Go Back</Link>
+        <div dangerouslySetInnerHTML={{ __html: book.content.rendered }}></div>
+        <h4>Publisher: {book.acf.publisher}</h4>
       </Fragment>
     );
   } else {

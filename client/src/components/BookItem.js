@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const BookItem = props => {
   const [imageURL, getImage] = useState('');
@@ -7,9 +8,8 @@ const BookItem = props => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    console.log(props.book.featured_media);
     const getImageURL = axios.get(
-      `http://localhost:8000/wp-json/wp/v2/media/${props.book.featured_media}`
+      `/wp-json/wp/v2/media/${props.book.featured_media}`
     );
     const getAuthor = axios.get(`/wp-json/wp/v2/users/${props.book.author}`);
 
@@ -25,12 +25,14 @@ const BookItem = props => {
       <div>
         <h2>{props.book.title.rendered}</h2>
         <small>
-          review by <strong></strong>
+          review by <strong>{author}</strong>
         </small>
-        <img src={imageURL} alt={props.book.title.rendered} />
+        <img style={{ width: '75%' }} src={imageURL} alt={props.book.title.rendered} />
         <div
           dangerouslySetInnerHTML={{ __html: props.book.excerpt.rendered }}
         />
+        <Link to={`/book/${props.book.id}`}>Read Review</Link>
+        <hr />
       </div>
     );
   } else {
